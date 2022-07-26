@@ -52,4 +52,11 @@ header {
     display: none;
 }
 
+
+.book-container {
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 15px;
+}
 /* https://coolors.co/612c1a-431f13-283b40-0d1416-010203 */
