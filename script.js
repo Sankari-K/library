@@ -1,4 +1,5 @@
 let bookContainer = document.querySelector('.book-container')
+let clickNewBook = document.querySelector(".new-book")
 
 // All book objects are stored in an array
 let myLibrary = [];
@@ -24,10 +25,12 @@ function addBookToLibrary() {
 
 // Helper function
 function getUserInput() {
+    console.log("hehre");
+    showpopup();
     let bookDetails = [];
-    for (let i = 0; i < 4; i++) {
-        bookDetails.push(window.prompt(`Data ${i + 1}?`))
-    }
+    // for (let i = 0; i < 4; i++) {
+    //     bookDetails.push(window.prompt(`Data ${i + 1}?`))
+    // }
     return bookDetails;
 }
 
@@ -35,8 +38,13 @@ function getUserInput() {
 function displayBook(bookObject) {
     console.log(bookObject.getInfo());
     let info = document.createElement("div");
-    info.style.backgroundColor = "rgb(255, 0, 0)";
+    info.style.backgroundColor = "rgb(97, 44, 26)";
     bookContainer.appendChild(info);
     info.innerHTML = bookObject.getInfo();   
 }
 
+document.querySelector(".new-book").addEventListener('click', addBookToLibrary);
+
+function showpopup() {
+    document.getElementById("popupform").classList.remove("hidden");
+}
