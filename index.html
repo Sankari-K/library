@@ -12,9 +12,9 @@
         <header>
             <h1>Library</h1>
             <div class="stats">
-                <li>Total books: <span>--</span></li>
-                <li>Books to be read:  <span>--</span></li>
-                <li>Books already read:  <span>--</span></li>
+                <li>Total books (<span>-</span>)</li>
+                <li>Books to be read:  (<span>-</span>)</li>
+                <li>Books already read:  (<span>-</span>)</li>
             </div>
         </header>
         <div class="book-container"></div>
@@ -24,11 +24,11 @@
         <a href="" class="close">x</a>
         <form action="" id="form">
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title" maxlength="8" required>
             <label for="author">Author:</label>
-            <input type="text" id="author" name="author" required>
+            <input type="text" id="author" name="author" maxlength="8" required>
             <label for="pages">Number of pages:</label>
-            <input type="number" min="1" name="pages" id="pages" required>
+            <input type="number" min="1" name="pages" id="pages" max=100000 required>
             <h4>Read status:</h4>
             <div>
                 <input type="radio" id="1" name="read" value="1" required>

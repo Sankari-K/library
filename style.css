@@ -33,6 +33,7 @@ header {
     padding: 10px;
     border: 1px dashed;
     list-style: none;
+    display: flex;
 }
 
 .stats>li {
@@ -40,10 +41,10 @@ header {
 }
 
 .new-book {
-    height: 40px;
+    height: auto;
     padding: 10px;
     background-color: #ffffff11;
-    position: sticky;
+    position: fixed;
     left: 90%;
     top: 90%;
 }
@@ -53,12 +54,14 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    position: fixed;
     left: 40%;
     top: 20%;
     border: 2px solid black;
     padding: 20px;
-
+    color: white;
+    font-weight: 800;
+    background-color: #D4AF3799;
 }
 
 #popupform.hidden {
@@ -70,7 +73,7 @@ header {
     margin: 15px 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
-    gap: 15px;
+    gap: 20px;
 }
 
 #form {
@@ -87,8 +90,40 @@ header {
 .close {
     align-self: flex-end;
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 26px;
     font-weight: 600;
+}
+
+.card {
+    padding: 10px 27px;
+    border-radius: 5px;
+    border: solid 2px #D4AF37;
+    background: linear-gradient(to right, #D4AF37 19px, #ffffff11 20px); 
+}
+
+.card > p, .card > button {
+    margin: 5px 0;
+}
+
+.card > p > p:first-child {
+    font-size: 32px;
+    text-align: center;
+}
+
+.card > button {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background-color: #ffffff11;
+    border: 3px solid #D4AF37;
+}
+
+.card > button:hover {
+    background-color: #ffffff55;
+    transform: scale(1.06);
+}
+
+input {
+    border-radius: 5px;
 }
 /* https://coolors.co/612c1a-431f13-283b40-0d1416-010203 */

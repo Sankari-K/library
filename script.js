@@ -1,3 +1,5 @@
+let COLORS = ["rgba(4, 106, 67, 0.4)", "rgba(40, 59, 64, 0.4)", "rgba(97, 44, 26, 0.4)"]; 
+
 let bookContainer = document.querySelector('.book-container');
 let body = document.querySelectorAll('.body');
 let exit = document.querySelector('.close');
@@ -38,12 +40,26 @@ function showForm() {
 // Display a single book as a card
 function displayBook(bookObject) {
     let info = document.createElement("div");
-    info.style.backgroundColor = "rgba(97, 44, 26, 0.4)";
+    info.style.backgroundColor =  COLORS[Math.floor(Math.random() * COLORS.length)];//"rgba(97, 44, 26, 0.4)";
     info.classList.add("card");
 
-    bookContainer.appendChild(info);
-    info.innerHTML = bookObject.getInfo();   
-    info.innerHTML = `<p>${bookObject.title}</p> <p>${bookObject.author}</p> <p>${bookObject.pages}</p> <p>${bookObject.isRead === '1'? "Read":"Not read yet"}</p>`;
+    let readButton = document.createElement("button");
+    readButton.classList.add("read-status-btn");
+    readButton.innerText = "Change read status";
+
+    let deleteBook = document.createElement("button");
+    deleteBook.classList.add("del-book");
+    deleteBook.innerText = "Delete book";
+
+    let details = document.createElement("p");
+    details.innerHTML = `<p>${bookObject.title}</p> <p>Author: ${bookObject.author}</p> \
+    <p>Pages: ${bookObject.pages}</p> <p>${bookObject.isRead === '1'? "Read":"Not read yet"}</p>`;
+
+    info.appendChild(details);
+    info.appendChild(readButton);
+    info.appendChild(deleteBook);
+    
+    bookContainer.appendChild(info);  
 }
 
 
