@@ -30,7 +30,6 @@ header {
 }
 
 .stats {
-    padding: 10px;
     border: 1px dashed;
     list-style: none;
     display: flex;
@@ -38,6 +37,7 @@ header {
 
 .stats>li {
     margin: 10px;
+    padding: 10px;
 }
 
 .new-book {

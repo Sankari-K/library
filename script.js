@@ -1,8 +1,10 @@
-let COLORS = ["rgba(4, 106, 67, 0.4)", "rgba(40, 59, 64, 0.4)", "rgba(97, 44, 26, 0.4)"]; 
+let COLORS = ["rgba(40, 59, 64, 0.4)", "rgba(97, 44, 26, 0.4)", "rgba(4, 106, 67, 0.4)"]; 
 
+// DOM elements
 let bookContainer = document.querySelector('.book-container');
 let body = document.querySelectorAll('.body');
 let exit = document.querySelector('.close');
+let stats = document.querySelectorAll('.stats > li');
 
 // Event listeners
 document.querySelector(".new-book").addEventListener('click', showForm);
@@ -18,9 +20,6 @@ function Book(title, author, pages, isRead) {
     this.author = author;
     this.pages = parseInt(pages);
     this.isRead = isRead;
-    let isReadInWords = this.isRead === '1'? "read":"not read yet";
-    this.getInfo =  () => `${this.title} by ${this.author}, \
-        ${this.pages} pages, ` + isReadInWords;
 }
 
 // Adding a book through user input
@@ -40,29 +39,47 @@ function showForm() {
 // Display a single book as a card
 function displayBook(bookObject) {
     let info = document.createElement("div");
-    info.style.backgroundColor =  COLORS[Math.floor(Math.random() * COLORS.length)];//"rgba(97, 44, 26, 0.4)";
+    info.style.backgroundColor =  COLORS[(bookObject.isRead == 1) + 1];// COLORS[Math.floor(Math.random() * COLORS.length)];
     info.classList.add("card");
+    info.setAttribute('id', myLibrary.length);
 
     let readButton = document.createElement("button");
     readButton.classList.add("read-status-btn");
     readButton.innerText = "Change read status";
+    readButton.addEventListener('click', changeReadStatus);
 
     let deleteBook = document.createElement("button");
     deleteBook.classList.add("del-book");
     deleteBook.innerText = "Delete book";
 
-    let details = document.createElement("p");
-    details.innerHTML = `<p>${bookObject.title}</p> <p>Author: ${bookObject.author}</p> \
-    <p>Pages: ${bookObject.pages}</p> <p>${bookObject.isRead === '1'? "Read":"Not read yet"}</p>`;
+    let details = document.createElement("p"); 
+    details.innerHTML = `<p>${bookObject.title}</p> <p>${bookObject.author}</p> \
+    <p>${bookObject.pages} pages</p>`;
 
     info.appendChild(details);
     info.appendChild(readButton);
     info.appendChild(deleteBook);
     
     bookContainer.appendChild(info);  
+    updateStats();
 }
 
 
+function updateStats() {
+    let readStats = [myLibrary.length, 0, 0];
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].isRead == 1) {
+            readStats[2] += 1;
+        }
+    }
+    let counter = 0;
+    readStats[1] = readStats[0] - readStats[2];
+    stats.forEach((item) => {
+        let textField = item.querySelector("span");
+        textField.innerText = readStats[counter];
+        counter += 1;
+    });
+}
 
 function handleForm(event) { 
     event.preventDefault(); 
@@ -74,7 +91,7 @@ function handleForm(event) {
             read_value = isRead[i].value;
         }
     }
-    newBookDetails = [title.value, author.value, pages.value, read_value]
+    newBookDetails = [title.value, author.value, pages.value, read_value];
     document.getElementById("form").reset();
     document.getElementById("popupform").classList.add("hidden");
     body[0].classList.remove("blurred")
@@ -88,4 +105,17 @@ function exitForm(event) {
     document.getElementById("popupform").classList.add("hidden");
     body[0].classList.remove("blurred")
     body[1].classList.remove("blurred")
+}
+
+
+for (let i = 0; i < stats.length; i++) {
+    stats[i].style.backgroundColor = COLORS[i];
+}
+
+function changeReadStatus(event) {
+   console.log("before", myLibrary[event.composedPath()[1].id - 1].isRead == 1);
+   myLibrary[event.composedPath()[1].id - 1].isRead = myLibrary[event.composedPath()[1].id - 1].isRead == 1 ? 0 : 1;
+   console.log("after", myLibrary[event.composedPath()[1].id - 1].isRead);
+   event.composedPath()[1].style.backgroundColor =  COLORS[(myLibrary[event.composedPath()[1].id - 1].isRead === 1) + 1];
+   updateStats();
 }
