@@ -49,6 +49,18 @@ header {
     top: 90%;
 }
 
+@keyframes swirl {
+    0% {
+      transform: scale(0) rotate(360deg);
+    }
+    60% {
+      transform: scale(0.8) rotate(-10deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
 #popupform {
     z-index: 999;
     display: flex;
@@ -62,10 +74,14 @@ header {
     color: white;
     font-weight: 800;
     background-color: #D4AF3799;
+    transition: all .5s ease-in-out;
 }
 
+
 #popupform.hidden {
-    display: none;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
 }
 
 
@@ -126,4 +142,3 @@ header {
 input {
     border-radius: 5px;
 }
-/* https://coolors.co/612c1a-431f13-283b40-0d1416-010203 */
