@@ -74,7 +74,13 @@ header {
     color: white;
     font-weight: 800;
     background-color: #D4AF3799;
-    transition: all .5s ease-in-out;
+    transition: all .3s ease;
+    transform: scale(0);
+    /* -in-out; */
+}
+
+#popupform.active {
+    transform: scale(1);
 }
 
 

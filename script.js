@@ -30,6 +30,7 @@ function addBookToLibrary(newBook) {
 }
 
 function showForm() {
+    document.getElementById("popupform").classList.add("active");
     document.getElementById("popupform").classList.remove("hidden");
     body[0].classList.add("blurred");
     body[1].classList.add("blurred");
@@ -83,8 +84,8 @@ function updateStats() {
 }
 
 function handleForm(event) { 
+    document.getElementById("popupform").classList.remove("active");
     event.preventDefault(); 
-
     var isRead = document.getElementsByName('read');
     var read_value;
     for(var i = 0; i < isRead.length; i++){
@@ -103,6 +104,7 @@ function handleForm(event) {
 function exitForm(event) {
     event.preventDefault(); 
     document.getElementById("form").reset();
+    document.getElementById("popupform").classList.remove("active");
     document.getElementById("popupform").classList.add("hidden");
     body[0].classList.remove("blurred")
     body[1].classList.remove("blurred")
