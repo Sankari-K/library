@@ -51,6 +51,7 @@ function displayBook(bookObject) {
     let deleteBook = document.createElement("button");
     deleteBook.classList.add("del-book");
     deleteBook.innerText = "Delete book";
+    deleteBook.addEventListener('click', toDeleteBook);
 
     let details = document.createElement("p"); 
     details.innerHTML = `<p>${bookObject.title}</p> <p>${bookObject.author}</p> \
@@ -113,9 +114,19 @@ for (let i = 0; i < stats.length; i++) {
 }
 
 function changeReadStatus(event) {
-   console.log("before", myLibrary[event.composedPath()[1].id - 1].isRead == 1);
    myLibrary[event.composedPath()[1].id - 1].isRead = myLibrary[event.composedPath()[1].id - 1].isRead == 1 ? 0 : 1;
-   console.log("after", myLibrary[event.composedPath()[1].id - 1].isRead);
    event.composedPath()[1].style.backgroundColor =  COLORS[(myLibrary[event.composedPath()[1].id - 1].isRead === 1) + 1];
    updateStats();
+}
+
+function toDeleteBook(event) {
+    let idToDelete = event.composedPath()[1].id;
+    let elementToDelete = document.getElementById(idToDelete);
+    elementToDelete.remove();
+    myLibrary.splice(idToDelete - 1, 1);
+
+    for (let i = 0; i < bookContainer.childNodes.length; i++) {
+        bookContainer.childNodes[i].id = myLibrary.indexOf(bookContainer.childNodes[i]) + 2;
+    }
+    updateStats();
 }
