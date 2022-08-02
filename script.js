@@ -29,6 +29,7 @@ function addBookToLibrary(newBook) {
     displayBook(newBookObject);
 }
 
+// Show from to input a book
 function showForm() {
     document.getElementById("popupform").classList.add("active");
     document.getElementById("popupform").classList.remove("hidden");
@@ -109,7 +110,6 @@ function exitForm(event) {
     body[0].classList.remove("blurred")
     body[1].classList.remove("blurred")
 }
-
 
 for (let i = 0; i < stats.length; i++) {
     stats[i].style.backgroundColor = COLORS[i];
